@@ -1,0 +1,67 @@
+import random
+
+#Création des variables 
+
+gain = 1000000
+jeu = []
+gagner = []
+continuer = str()
+
+#Création de la fonction qui permet de prendre les nombres aléatoires
+
+def ma_func(x):
+  for random_numb in range(x):
+    random_numb = random.randint(1,valeur_maximum)
+    print(random_numb)
+    gagner.append(random_numb)
+  print("le ticket gagnant est :",gagner)
+
+#demander à l'utilisateur s'il veut continuer ou annuler
+
+while continuer!="ENTER" and continuer != "EXIT":
+  continuer = str(input("Tapez tout en MAJUSCULE !\n\033[1;32m ENTER  pour continuer\n\x1b[6;31;40m EXIT   pour annuler\n \033[1;37;40m\n"))
+  if continuer!="ENTER" and continuer != "EXIT":
+    print("Veuillez réessayer s'il vous plaît.\n")
+if continuer == "ENTER" or continuer == "EXIT":
+  if continuer == "ENTER":
+    
+#l'utilisateur va faire entrer les nombres a choisir et l'intervalle
+    
+    while continuer == "ENTER":
+      chiffre_coche = int((input)("Entrez le nombre de chiffre à cocher : "))
+      valeur_maximum = int((input)("Entrez la valeur maximum des chiffres à cocher : "))
+      
+#on calcule combien de chance il peut avoir, ça dépend des nombres qu'il a entré.
+      
+      chance = valeur_maximum**chiffre_coche
+      chance = 1/chance
+      
+#l'utilisateur va entrer les nombres.
+      
+      while len(jeu) < chiffre_coche:
+          print("Entrez un entier entre 1 et",valeur_maximum)
+          nb = int(input())
+        
+#on ajoute les nombres que l'utilisateur a entré en liste.
+        
+          jeu.append(nb)
+      print(" votre ticket aléatoire est : ",jeu)
+      ma_func(chiffre_coche)
+      if gagner == jeu:
+          print("Vous avez remporté le prix de ",gain,"€ !!! Félicitation !!")
+      else:
+        print("Vous n\'avez pas remporté le grand prix de",gain,"€. Vous aurez plus de chance la prochaine fois. Vous avez ",chance,"% de chance de remporter le gros lot.")
+        
+#doubler la récompense si l'utilisateur perd.
+        
+        gain = gain *2
+      continuer = str((input)("Tapez tout en MAJUSCULE !\n\033[1;32m ENTER pour continue\n\x1b[6;31;40m EXIT pour annuler\n \033[1;37;40m"))
+      
+#on vide notre listes pour que l'utilisateur va rejouer.
+      
+      jeu.clear()
+      gagner.clear()
+  else: 
+    print("Au revoir")
+else: 
+  print("Oups!, il faut bien tapez ENTER EN MAJUSCULE pour continuer ou EXIT pour annuler")
